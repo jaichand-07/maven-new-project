@@ -1,4 +1,9 @@
-FROM tomact:9-jdk17
-MAINTAINER Krishna
+FROM tomcat:9.0-jdk17
+
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
+
 EXPOSE 8080
-COPY target/demo-1.0.war /usr/local/tomcat/webapps/demo-1.0.war
+
+CMD ["catalina.sh", "run"]
